@@ -90,7 +90,7 @@ def sm3_cf(v_i, b_i):
     v_j = [a, b, c, d, e, f, g, h]
     return [v_j[i] ^ v_i[i] for i in range(8)]
 
-def sm3_hash(msg, new_vector):
+def sm3_hash(msg, new_vector):# 新增了一个参数new_vector，使得能够接受新的链变量作为参数，而非只能够使用默认的IV进行计算
     # print(msg)
     len1 = len(msg)
     reserve1 = len1 % 64
@@ -112,6 +112,7 @@ def sm3_hash(msg, new_vector):
     for i in range(8):
         msg.append(bit_length_str[7-i])
 
+    # 此处修改，因此我们的设定添加的内容不会超过一个消息分组，因此只需要对于最后分组进行运算，group_count设定为1即可，对于msg的索引也可以直接定位至最后一组
     # group_count = round(len(msg) / 64) - 1
     group_count = 1
     B = []
