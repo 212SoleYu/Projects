@@ -1,6 +1,5 @@
 import binascii
 from math import ceil
-# from myfunc import rotl, bytes_to_list
 
 IV = [
     1937774191, 1226093241, 388252375, 3666478592,
